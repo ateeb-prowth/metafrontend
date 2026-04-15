@@ -178,12 +178,12 @@ export default function Dashboard() {
           },
         );
         setAccounts(res.data);
+
+        if (res.data.length > 0) {
+          setSelectedAccount(res.data[0].accountId);
+        }
       } catch (err) {
         console.error("Error fetching accounts", err);
-      }
-
-      if (res.data.length > 0) {
-        setSelectedAccount(res.data[0].accountId);
       }
     };
 
