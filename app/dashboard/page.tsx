@@ -127,7 +127,8 @@ export default function Dashboard() {
   const [selectedAccount, setSelectedAccount] = useState(null);
   const [insights, setInsights] = useState(null);
 
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
