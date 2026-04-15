@@ -123,8 +123,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Dashboard() {
-  const [accounts, setAccounts] = useState([]);
-  const [selectedAccount, setSelectedAccount] = useState(null);
+  type Account = {
+    accountId: string;
+  };
+  // const [accounts, setAccounts] = useState([]);
+  const [accounts, setAccounts] = useState<Account[]>([]);
+  // const [selectedAccount, setSelectedAccount] = useState(null);
+  const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
   const [insights, setInsights] = useState(null);
 
   // const [token, setToken] = useState(null);
