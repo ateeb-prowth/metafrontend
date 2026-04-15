@@ -4,17 +4,20 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [token, setToken] = useState(null);
+  // const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null);
   const route = useRouter();
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    setToken(storedToken);
+    if (typeof window !== "undefined") {
+      const storedToken = localStorage.getItem("token");
+      setToken(storedToken);
+    }
   }, []);
 
   const logout = () => {
-    localStorage.clear("token");
+    localStorage.removeItem("token");
     // route.refresh();
-    window.location.reload()
+    window.location.reload();
   };
   return (
     <div className="container my-4 d-flex flex-column">

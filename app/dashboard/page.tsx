@@ -121,8 +121,10 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+  const router = useRouter();
   type Account = {
     accountId: string;
   };
@@ -158,15 +160,27 @@ export default function Dashboard() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   if (!token) {
+  //     router.push("/login");
+  //   }
+  // }, [token]);
+
   useEffect(() => {
     if (!token) return;
 
     const fetchAccounts = async () => {
-      const res = await axios.get("http://localhost:3000/meta/accounts", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setAccounts(res.data);
+      try {
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/meta/accounts`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+        setAccounts(res.data);
+      } catch (err) {
+        console.error("Error fetching accounts", err);
+      }
 
       if (res.data.length > 0) {
         setSelectedAccount(res.data[0].accountId);
@@ -210,6 +224,7 @@ export default function Dashboard() {
               <button
                 className="btn btn-primary w-100"
                 onClick={handleConnectMeta}
+                disabled={!token}
               >
                 Connect Meta Ads
               </button>
@@ -234,16 +249,23 @@ export default function Dashboard() {
         <div className="col-md-9 p-4">
           <h3 className="mb-4">Performance Dashboard</h3>
 
-          {!insights && <p>Loading insights...</p>}
-
-          {insights && (
-            <div className="row g-3">
-              <Card title="Impressions" value={insights?.impressions ?? 0} />
-              <Card title="Clicks" value={insights?.clicks ?? 0} />
-              <Card title="Spend" value={`₹${insights?.spend ?? 0}`} />
-              <Card title="CTR" value={`${insights?.ctr ?? 0}%`} />
-              <Card title="CPC" value={`₹${insights?.cpc ?? 0}`} />
-            </div>
+          {!insights ? (
+            <p>Loading insights...</p>
+          ) : (
+            <>
+              {insights && (
+                <div className="row g-3">
+                  <Card
+                    title="Impressions"
+                    value={insights?.impressions ?? 0}
+                  />
+                  <Card title="Clicks" value={insights?.clicks ?? 0} />
+                  <Card title="Spend" value={`₹${insights?.spend ?? 0}`} />
+                  <Card title="CTR" value={`${insights?.ctr ?? 0}%`} />
+                  <Card title="CPC" value={`₹${insights?.cpc ?? 0}`} />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
