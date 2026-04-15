@@ -251,7 +251,7 @@ export default function Dashboard() {
   );
 }
 
-function Card({ title, value }) {
+function Card({ title, value }: { title: string; value: string | number }) {
   return (
     <div className="col-md-4">
       <div className="card shadow-sm">
