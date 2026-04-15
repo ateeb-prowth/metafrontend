@@ -9,7 +9,7 @@ export default function LoginPage() {
         If you want to delete your data from our application, please follow
         these steps:
       </h5>
-      <p>1. Send an email to: your@email.com</p>
+      <p>1. Send an email to: ateeb.prowth@gmail.com</p>
       <p>2. Use subject: "Delete my data"</p>
       <p>3. Include your registered email ID</p>
       <p>OR</p>
