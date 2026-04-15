@@ -195,7 +195,7 @@ export default function Dashboard() {
 
     const fetchInsights = async () => {
       const res = await axios.get(
-        `http://localhost:3000/meta/insights?accountId=${selectedAccount}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/meta/insights?accountId=${selectedAccount}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -209,7 +209,7 @@ export default function Dashboard() {
 
   const handleConnectMeta = () => {
     const token = localStorage.getItem("token");
-    window.location.href = `http://localhost:3000/meta/connect?token=${token}`;
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_URL}/meta/connect?token=${token}`;
   };
 
   return (
