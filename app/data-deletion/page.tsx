@@ -1,23 +1,22 @@
-"use client";
-
-export default function LoginPage() {
+export default function DataDeletion() {
   return (
-    <div className="container d-flex flex-column align-items-start justify-content-center text-start w-100 p-5 my-5">
-      <h2>Data Deletion Instructions</h2>
+    <div style={{ padding: "40px", maxWidth: "800px", margin: "auto" }}>
+      <h1>User Data Deletion</h1>
 
-      <h5>
-        If you want to delete your data from our application, please follow
-        these steps:
-      </h5>
-      <p>1. Send an email to: ateeb.prowth@gmail.com</p>
-      <p>2. Use subject: "Delete my data"</p>
-      <p>3. Include your registered email ID</p>
-      <p>OR</p>
       <p>
-        You can disconnect Meta from the dashboard, which will remove your
-        stored data.
+        If you want to delete your data from our application, follow the steps below:
       </p>
-      <p>All user data will be deleted within 24 hours.</p>
+
+      <ol>
+        <li>Login to your account</li>
+        <li>Go to Dashboard</li>
+        <li>Click on "Disconnect Meta Account"</li>
+        <li>Or contact us at: ateeb.prowth@gmail.com</li>
+      </ol>
+
+      <p>
+        Once requested, all your data will be permanently deleted within 24-48 hours.
+      </p>
     </div>
   );
 }
