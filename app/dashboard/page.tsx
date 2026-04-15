@@ -126,11 +126,19 @@ export default function Dashboard() {
   type Account = {
     accountId: string;
   };
+  type Insights = {
+    impressions: string;
+    clicks: string;
+    spend: string;
+    ctr: string;
+    cpc: string;
+  };
   // const [accounts, setAccounts] = useState([]);
   const [accounts, setAccounts] = useState<Account[]>([]);
   // const [selectedAccount, setSelectedAccount] = useState(null);
   const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
-  const [insights, setInsights] = useState(null);
+  // const [insights, setInsights] = useState(null);
+  const [insights, setInsights] = useState<Insights | null>(null);
 
   // const [token, setToken] = useState(null);
   const [token, setToken] = useState<string | null>(null);
@@ -230,11 +238,11 @@ export default function Dashboard() {
 
           {insights && (
             <div className="row g-3">
-              <Card title="Impressions" value={insights.impressions} />
-              <Card title="Clicks" value={insights.clicks} />
-              <Card title="Spend" value={`₹${insights.spend}`} />
-              <Card title="CTR" value={`${insights.ctr}%`} />
-              <Card title="CPC" value={`₹${insights.cpc}`} />
+              <Card title="Impressions" value={insights?.impressions ?? 0} />
+              <Card title="Clicks" value={insights?.clicks ?? 0} />
+              <Card title="Spend" value={`₹${insights?.spend ?? 0}`} />
+              <Card title="CTR" value={`${insights?.ctr ?? 0}%`} />
+              <Card title="CPC" value={`₹${insights?.cpc ?? 0}`} />
             </div>
           )}
         </div>
